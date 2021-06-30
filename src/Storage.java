@@ -31,6 +31,11 @@ public class Storage extends Application {
     Scene mainScene;
     Scene listAccountsScene;
     int userId;
+
+    /**
+     * Main Screen with Login
+     * @param primaryStage the mainStage
+     */
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -94,6 +99,9 @@ public class Storage extends Application {
 
             login.getChildren().addAll(imageBox, email, password, message, submit);
 
+            /*
+             * Checks if login data are correct and sets scene to listPasswordScene else shows error Message
+             */
             button.setOnAction(e -> {
                 mainScene.setCursor(Cursor.WAIT);
                 Thread t = new Thread(() -> {
@@ -135,11 +143,18 @@ public class Storage extends Application {
         }
     }
 
+    /**
+     * Scene which shows all Accounts
+     * @return the scene
+     */
     public Scene listPasswordsScene() {
         ObservableList<Account> items = FXCollections.observableArrayList(db.getPasswordList(userId));
         ListView<Account> list = new ListView<>();
 
         list.setItems(items);
+        /*
+         * modifies cell of listview to display image next to text
+         */
         list.setCellFactory(listView -> new ListCell<Account>() {
             private ImageView imageView = new ImageView();
             @Override
@@ -257,13 +272,19 @@ public class Storage extends Application {
 
         view.getChildren().addAll(mb, horizontale, h);
 
+        /*
+         * go to new Account scene if plus image clicked
+         */
         imageViewAdd.setOnMouseClicked((EventHandler<Event>) event -> {
             try {
-                primaryStage.setScene(newAccountScene(primaryStage, items));
+                primaryStage.setScene(newAccountScene());
             } catch (SQLException ignored) {
             }
         });
 
+        /*
+         * Delete profile with confirmation
+         */
         m3.setOnAction(e -> {
             a.setAlertType(Alert.AlertType.CONFIRMATION);
             a.setTitle("Delete Profile?");
@@ -277,11 +298,18 @@ public class Storage extends Application {
             }
         });
 
+        /*
+         * Logout
+         */
         m2.setOnAction(e -> {
             userId = 0;
             primaryStage.setScene(mainScene);
         });
 
+        /*
+         * Handler when item on listview clicked
+         * Show the data of the account on the right side
+         */
         list.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if(list.getItems().size() > 0){
@@ -303,6 +331,9 @@ public class Storage extends Application {
                         password.setText(AES256.decrypt(list.getSelectionModel().getSelectedItem().getPassword()));
                         link.setText(list.getSelectionModel().getSelectedItem().getWebsite());
                         link.setOnAction(event -> getHostServices().showDocument(list.getSelectionModel().getSelectedItem().getWebsite()));
+                        /*
+                         * Delete account with confirmation and refresh the list
+                         */
                         deleteAccountButton.setOnAction(e -> {
                             a.setAlertType(Alert.AlertType.CONFIRMATION);
                             a.setTitle("Delete Account?");
@@ -315,7 +346,6 @@ public class Storage extends Application {
                                     db.deleteAccount(list.getSelectionModel().getSelectedItem().getId());
                                 } catch (SQLException ignored) {}
                                 list.getItems().remove(list.getSelectionModel().getSelectedIndex());
-                                //accountView.setManaged(false);
                                 list.requestFocus();
                             }
                         });
@@ -326,8 +356,12 @@ public class Storage extends Application {
         return listAccountsScene;
     }
 
-    public Scene newAccountScene(Stage primaryStage, ObservableList<Account> items) throws SQLException {
-        //db.getPasswordList();
+    /**
+     * Shows all Accounts
+     * @return the scene
+     * @throws SQLException sqlException
+     */
+    public Scene newAccountScene() throws SQLException {
         VBox view = new VBox();
         view.setSpacing(10);
         view.setAlignment(Pos.TOP_LEFT);
@@ -400,6 +434,10 @@ public class Storage extends Application {
 
         view.getChildren().addAll(backBox, nameBox, urlBox, usernameEmailBox, passwordBox, submitBox);
         view.requestFocus();
+
+        /*
+         * create account if button pressed and refresh listview
+         */
         button.setOnAction(e -> {
             try {
                 Account acc = new Account(userId, urlField.getText(), nameField.getText(), usernameEmailField.getText(), passwordField.getText());
@@ -413,8 +451,11 @@ public class Storage extends Application {
         return addAccount;
     }
 
+    /**
+     * Scene to create a new profile
+     * @return the scene
+     */
     public Scene newProfileScene() {
-        //db.getPasswordList();
         VBox view = new VBox();
         view.setSpacing(10);
         view.setAlignment(Pos.TOP_CENTER);
@@ -478,6 +519,9 @@ public class Storage extends Application {
 
         view.getChildren().addAll(backBox, usernameEmailBox, passwordBox, password2Box, message, submitBox);
 
+        /*
+         * create profile if button pressed, both passwords match and profile name not exists
+         */
         button.setOnAction(e -> {
             if(!passwordField.getText().equals(password2Field.getText())) {
                 message.setText("Passwords don't match");
@@ -494,6 +538,10 @@ public class Storage extends Application {
         return new Scene(view, 300, 300);
     }
 
+    /**
+     * Starts the application
+     * @param args arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

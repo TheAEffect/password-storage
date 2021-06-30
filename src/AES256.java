@@ -10,14 +10,25 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * AES256 Class
+ */
 public class AES256 {
 
+    /**
+     * unused constructor
+     */
     private AES256(){
     }
 
-    private static final String SECRET_KEY = "my_super_secret_key_ho_ho_ho";
-    private static final String SALT = "ssshhhhhhhhhhh!!!!";
+    private static final String SECRET_KEY = "my_super_secret_key_for_db";
+    private static final String SALT = "DB2_Projekt";
 
+    /**
+     * Encrypts the password
+     * @param strToEncrypt string to encrypt
+     * @return the encrypted String
+     */
     public static String encrypt(String strToEncrypt) {
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -38,6 +49,11 @@ public class AES256 {
         return null;
     }
 
+    /**
+     * Decrypts the password
+     * @param strToDecrypt string to decrypt
+     * @return the decrypted String
+     */
     public static String decrypt(String strToDecrypt) {
         try {
             byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

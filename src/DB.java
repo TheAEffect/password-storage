@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class DB {
-    String dbHost = "localhost";
-    int dbPort = 14331;
-    String dbName = "storage";
-    String dbUser = "storage";
-    String dbPass = "Password1!";
+    String dbHost = "134.108.190.89";
+    int dbPort = 1433;
+    String dbName = "SWB_DB2_Projekt";
+    String dbUser = "wkb4";
+    String dbPass = "wkb4";
 
     String connectionUrl = "jdbc:sqlserver://"+dbHost+":"+dbPort+";databaseName="+dbName;
 
@@ -21,7 +21,7 @@ public class DB {
         obj[0] = false;
         CallableStatement cs;
         con = DriverManager.getConnection(connectionUrl, dbUser, dbPass);
-        cs = this.con.prepareCall("{call Login(?)}");
+        cs = this.con.prepareCall("{call dbo.Schnell_Login(?)}");
         cs.setString(1, email.toLowerCase());
 
         rs = cs.executeQuery();
@@ -37,7 +37,7 @@ public class DB {
         try {
             CallableStatement cs;
             con = DriverManager.getConnection(connectionUrl, dbUser, dbPass);
-            cs = this.con.prepareCall("{call GetAccounts(?)}");
+            cs = this.con.prepareCall("{call dbo.Schnell_GetAccounts(?)}");
             cs.setInt(1, userId);
             rs = cs.executeQuery();
             List<Account> accounts = new ArrayList<>();
@@ -63,7 +63,7 @@ public class DB {
             CallableStatement cs;
             con = DriverManager.getConnection(connectionUrl, dbUser, dbPass);
 
-            cs = this.con.prepareCall("{call AddAccount(?, ?, ?, ?, ? ,?)}");
+            cs = this.con.prepareCall("{call dbo.Schnell_AddAccount(?, ?, ?, ?, ? ,?)}");
             cs.setInt(1, a.getUserId());
             cs.setString(2, a.getName());
             cs.setString(3, a.getURL());
@@ -86,7 +86,7 @@ public class DB {
     public boolean deleteAccount(int profileId) throws SQLException {
         CallableStatement cs;
         con = DriverManager.getConnection(connectionUrl, dbUser, dbPass);
-        cs = this.con.prepareCall("{call DeleteAccount(?)}");
+        cs = this.con.prepareCall("{call dbo.Schnell_DeleteAccount(?)}");
         cs.setInt(1, profileId);
         cs.executeUpdate();
         cs.close();
@@ -97,7 +97,7 @@ public class DB {
         try {
             CallableStatement cs;
             con = DriverManager.getConnection(connectionUrl, dbUser, dbPass);
-            cs = this.con.prepareCall("{call DeleteProfile(?)}");
+            cs = this.con.prepareCall("{call dbo.Schnell_DeleteProfile(?)}");
             cs.setInt(1, profileId);
             cs.executeUpdate();
             cs.close();
@@ -113,7 +113,7 @@ public class DB {
 
             String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
             if(password.equals(passwordRepeat)) {
-                cs = this.con.prepareCall("{call AddProfile(?, ?)}");
+                cs = this.con.prepareCall("{call dbo.Schnell_AddProfile(?, ?)}");
                 cs.setString(1, email.toLowerCase());
                 cs.setString(2, hashed);
 

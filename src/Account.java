@@ -3,6 +3,9 @@ import org.apache.commons.codec.binary.Base64;
 import java.io.*;
 import java.net.URL;
 
+/**
+ * Account Class
+ */
 public class Account {
     int userId;
     int accId = 0;
@@ -12,6 +15,15 @@ public class Account {
     String password;
     String favicon;
 
+    /**
+     * Account Constructor for creating
+     * @param userId the userid of the owner
+     * @param url the url of the given website
+     * @param name name of the account
+     * @param usernameEmail username of the account
+     * @param password password of the account
+     * @throws IOException
+     */
     Account(int userId, String url, String name, String usernameEmail, String password) throws IOException {
         this.name = name;
         this.URL = url;
@@ -21,6 +33,16 @@ public class Account {
         this.favicon = setFavicon();
     }
 
+    /**
+     * Account Constructor for RE-creating from db
+     * @param id the id of the account itself
+     * @param userId the userid of the owner
+     * @param url the url of the given website
+     * @param name name of the account
+     * @param usernameEmail username of the account
+     * @param password password of the account
+     * @throws IOException
+     */
     Account(int id, String favicon, int userId, String url, String name, String usernameEmail, String password) {
         this.accId = id;
         this.name = name;
@@ -31,30 +53,58 @@ public class Account {
         this.favicon = favicon;
     }
 
+    /**
+     * Returns the username/email
+     * @return username
+     */
     public String getUsernameEmail() {
         return this.usernameEmail;
     }
 
+    /**
+     * Returns the password
+     * @return password
+     */
     public String getPassword() {
         return this.password;
     }
 
+    /**
+     * Returns the name
+     * @return name
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Returns the user id
+     * @return userId
+     */
     public int getUserId() {
         return this.userId;
     }
 
+    /**
+     * Returns the URL
+     * @return URL
+     */
     public String getURL() {
         return this.URL;
     }
 
+    /**
+     * Returns the Account id
+     * @return accId
+     */
     public int getId() {
         return this.accId;
     }
 
+    /**
+     * Converts the website URL conform and returns it
+     * @return the website url
+     */
     public String getWebsite() {
         if(this.URL == null || this.URL.equals("")) {
             return "";
@@ -72,10 +122,18 @@ public class Account {
         }
     }
 
+    /**
+     * Returns the favicon
+     * @return favicon
+     */
     public String getFavicon() {
         return this.favicon;
     }
 
+    /**
+     * Downloads the ico image from the given website, converts it to base64 and returns it
+     * @return base64 string
+     */
     public String setFavicon() {
         if(this.URL == null || this.URL.equals("")) {
             return null;
