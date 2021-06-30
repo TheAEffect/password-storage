@@ -1,0 +1,9 @@
+DROP PROCEDURE IF EXISTS DeleteAccount;
+GO
+CREATE PROCEDURE DeleteAccount
+(@PID INT)
+AS
+BEGIN
+    DELETE FROM accounts
+    WHERE id=@PID;
+END

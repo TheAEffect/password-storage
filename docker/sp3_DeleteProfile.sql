@@ -1,0 +1,9 @@
+DROP PROCEDURE IF EXISTS DeleteProfile;
+GO
+CREATE PROCEDURE DeleteProfile
+(@PID INT)
+AS
+BEGIN
+    DELETE FROM users
+    WHERE id=@PID;
+END
