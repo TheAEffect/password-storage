@@ -1,6 +1,6 @@
-DROP PROCEDURE IF EXISTS AddAccount;
+DROP PROCEDURE IF EXISTS dbo.Schnell_AddAccount;
 GO
-CREATE PROCEDURE AddAccount
+CREATE PROCEDURE dbo.Schnell_AddAccount
 @ID INT,
 @NAME VARCHAR(255),
 @URL VARCHAR(255),
@@ -9,6 +9,6 @@ CREATE PROCEDURE AddAccount
 @PASSWORD VARCHAR(255)
 AS
 BEGIN
-    INSERT INTO accounts (user_id, name, url, favicon, account, password)
+    INSERT INTO dbo.Schnell_accounts (user_id, name, url, favicon, account, password)
     VALUES (@ID, @NAME, @URL, @FAVICON, @ACCOUNT, @PASSWORD)
 END

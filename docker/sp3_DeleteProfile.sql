@@ -1,9 +1,9 @@
-DROP PROCEDURE IF EXISTS DeleteProfile;
+DROP PROCEDURE IF EXISTS dbo.Schnell_DeleteProfile;
 GO
-CREATE PROCEDURE DeleteProfile
+CREATE PROCEDURE dbo.Schnell_DeleteProfile
 (@PID INT)
 AS
 BEGIN
-    DELETE FROM users
+    DELETE FROM dbo.Schnell_users
     WHERE id=@PID;
 END

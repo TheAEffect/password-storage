@@ -1,15 +1,15 @@
 USE storage
 
-DROP TABLE IF EXISTS users;
-CREATE TABLE users
+DROP TABLE IF EXISTS dbo.Schnell_users;
+CREATE TABLE dbo.Schnell_users
 (
     id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     username_email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
 );
 
-DROP TABLE IF EXISTS accounts;
-CREATE TABLE accounts
+DROP TABLE IF EXISTS dbo.Schnell_accounts;
+CREATE TABLE dbo.Schnell_accounts
 (
     id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     user_id INT NOT NULL,

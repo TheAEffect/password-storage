@@ -1,10 +1,10 @@
-DROP PROCEDURE IF EXISTS AddProfile;
+DROP PROCEDURE IF EXISTS dbo.Schnell_AddProfile;
 GO
-CREATE PROCEDURE AddProfile
+CREATE PROCEDURE dbo.Schnell_AddProfile
 @EMAIL VARCHAR(255),
 @PASSWORD VARCHAR(255)
 AS
 BEGIN
-    INSERT INTO users (username_email, password)
+    INSERT INTO dbo.Schnell_users (username_email, password)
     VALUES (@EMAIL ,@PASSWORD)
 END
