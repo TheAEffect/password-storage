@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS dbo.Schnell_users;
+CREATE TABLE dbo.Schnell_users
+(
+    id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    username_email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+);
+
+DROP TABLE IF EXISTS Schnell_accounts;
+CREATE TABLE dbo.Schnell_accounts
+(
+    id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    user_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NULL,
+    favicon  VARCHAR(MAX),
+    account  VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+);
