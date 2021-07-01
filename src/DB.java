@@ -106,25 +106,38 @@ public class DB {
         }
     }
 
-    public boolean addProfile(String email, String password, String passwordRepeat) {
+    public Object[] addProfile(String username, String password, String passwordRepeat) {
+        Object[] o = new Object[2];
+        o[0] = false;
         try {
             CallableStatement cs;
             con = DriverManager.getConnection(connectionUrl, dbUser, dbPass);
 
             String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+            if(username.equals("")) {
+                o[1] = "Please enter an username";
+                return o;
+            }
+            if(password.equals("") || password.length() < 8) {
+                o[1] = "Please choose a longer password";
+                return o;
+            }
             if(password.equals(passwordRepeat)) {
                 cs = this.con.prepareCall("{call dbo.Schnell_AddProfile(?, ?)}");
-                cs.setString(1, email.toLowerCase());
+                cs.setString(1, username.toLowerCase());
                 cs.setString(2, hashed);
 
                 cs.executeUpdate();
                 cs.close();
-                return true;
+                o[0] = true;
+                return o;
             } else {
-                return false;
+                o[1] = "Passwords don't match";
+                return o;
             }
-        } catch (Exception Ex) {
-            return false;
+        } catch (Exception ignored) {
+            o[1] = "Username already registered";
         }
+        return o;
     }
 }
