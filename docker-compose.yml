@@ -1,0 +1,10 @@
+version: '3'
+services:
+  mssql:
+    container_name: mssql
+    build:
+      context: docker
+    ports:
+      - "14331:1433"
+    volumes:
+      - ./docker/data:/var/opt/mssql/data
