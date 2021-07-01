@@ -1,6 +1,13 @@
 # PasswordStorage
 
-Lokal:
+**Remote:**<br>
+Unter Verwendung der Datenbank des Hochschulservers muss lediglich das Projekt gestartet werden die Verbindungsangaben sind bereits in der DB.java
+gespeichert.
+Einziger Nachteil, dass die Favicons der Webseiten nicht angezeigt werden können (siehe Dokumentation).
+
+########################################
+
+**Lokal:**<br>
 Da zunächst geplant war Docker für die MS-SQL Datenbank zu verwendet findet sich der Docker mit Installationsskript noch immer hier.
 Um das ganze also lokal nutzen zu können muss zunächst falls vorhanden der Ordner data innerhalb des Ordners docker gelöscht werden. Dieser wird nach jedem Build erzeugt und stellt fest ob bereits die Tabellen angelegt wurden oder ob dies noch zu tun ist.
 
@@ -24,9 +31,3 @@ int dbPort = 14331
 String dbName = "storage"
 String dbUser = "storage"
 String dbPass = "Password1!"
-
-########################################
-
-Remote:
-Unter Verwendung der Datenbank des Hochschulservers muss lediglich das Projekt gestartet werden die Verbindungsangaben sind bereits in der DB.java
-gespeichert.
