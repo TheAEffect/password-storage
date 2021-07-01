@@ -14,10 +14,6 @@
           <option name="url" value="https://gitlab.hs-esslingen.de/arscit03/swaproject.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
-        <UrlAndUserName>
-          <option name="url" value="https://gitlab.hs-esslingen.de/arscit03/passwordstorage" />
-          <option name="userName" value="" />
-        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="E:\JetBrains" />
