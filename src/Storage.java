@@ -527,10 +527,13 @@ public class Storage extends Application {
                 message.setText("Passwords don't match");
             } else {
                 message.setText("");
-                if(db.addProfile(usernameEmailField.getText(), passwordField.getText(), password2Field.getText())) {
+                Object[] o = db.addProfile(usernameEmailField.getText(), passwordField.getText(), password2Field.getText());
+                if((boolean) o[0]) {
                     primaryStage.setScene(mainScene);
                 } else {
-                    message.setText("Username already registered");
+                    if(o[1] != null) {
+                        message.setText((String) o[1]);
+                    }
                 }
             }
         });
