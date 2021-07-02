@@ -6,7 +6,7 @@ Für das Projekt wurden 4 externe Bibliotheken verwendet. Diese wären "commons-
 ########################################
 
 **SQL Dateien**<br>
-Da ursprünglich mit Docker gearbeitet wurde, waren die SQL Dateien auch im "docker" Ordner enthalten. Nun, da auch der Remote-Zugirff funktioniert, ist Docker nicht mehr vonnöten. Somit habe ich auch hier einen extra Ordner "SQL Files" erstellt, welcher alle .sql Datein beinhaltet.
+Da ursprünglich mit Docker gearbeitet wurde, waren die SQL Dateien auch im "docker" Ordner enthalten. Nun, da auch der Remote-Zugirff funktioniert, ist Docker nicht mehr vonnöten. Somit habe ich auch hier einen extra Ordner "SQL Files" erstellt, welcher alle .sql Datein beinhaltet. Zunächst muss db.sql ausgeführt werden um die Tabellen zu erstellen. Anschließend können alle "Stored Procedures" und der "Trigger" erstellt werden.
 
 ########################################
 
