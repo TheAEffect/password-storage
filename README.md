@@ -1,5 +1,15 @@
 # PasswordStorage
 
+**Externe Bibliotheken**<br>
+Für das Projekt wurden 4 externe Bibliotheken verwendet. Diese wären "commons-codec-1.15.jar", "commons-io-2.10.0.jar", "image4j-0.7.2.jar" und "mssql-jdbc-9.2.1.jre8.jar". Da ich nicht weiß ob die Bibliotheken des Projekts in "External Libraries" mit hochgeladen werden, habe ich zusätzlich einen Ordner "libs" im Projekt ertstellt, welche alle .jar Dateien enthält. Diese müssen dem Projekt hinzugefügt werden.
+
+########################################
+
+**SQL Dateien**<br>
+Da ursprünglich mit Docker gearbeitet wurde, waren die SQL Dateien auch im "docker" Ordner enthalten. Nun, da auch der Remote-Zugirff funktioniert, ist Docker nicht mehr vonnöten. Somit habe ich auch hier einen extra Ordner "SQL Files" erstellt, welcher alle .sql Datein beinhaltet.
+
+########################################
+
 **Remote:**<br>
 Unter Verwendung der Datenbank des Hochschulservers muss lediglich das Projekt gestartet werden die Verbindungsangaben sind bereits in der DB.java
 gespeichert.
