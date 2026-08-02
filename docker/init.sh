@@ -1,8 +1,4 @@
 #!/bin/bash
-if [ -f "/var/opt/mssql/data/.sql-created" ]; then
-    echo "Already initialized"
-    exit 0
-fi
 
 echo "Waiting for MS SQL to be available ⏳"
 
@@ -44,7 +40,7 @@ else
     echo "MSSQL_DB: $MSSQL_DB"
 fi
 
-echo =============== CREATING INIT DATA                ==========================
+echo =============== CREATING INIT DATA ==========================
 
 
 
@@ -63,7 +59,14 @@ EOSQL
 
 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./init.sql" -o"/var/opt/mssql/data/initsqlout.log"
 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./db.sql" -o"/var/opt/mssql/data/initdbout.log"
-echo =============== INIT DATA CREATED                    ==========================
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./createTables.sql" -o"/var/opt/mssql/data/createtables.log"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./sp1_GetAccounts.sql" -o"/var/opt/mssql/data/initsp1.log"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./sp2_DeleteAccount.sql" -o"/var/opt/mssql/data/initsp2.log"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./sp3_DeleteProfile.sql" -o"/var/opt/mssql/data/initsp3.log"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./sp4_Login.sql" -o"/var/opt/mssql/data/initsp4.log"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./sp5_AddAccount.sql" -o"/var/opt/mssql/data/initsp5.log"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./sp6_AddProfile.sql" -o"/var/opt/mssql/data/initsp6.log"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -t 30 -i"./trigger_DeleteAccounts.sql" -o"/var/opt/mssql/data/inittrigger.log"
+echo =============== INIT DATA CREATED ==========================
 echo =============== MSSQL SERVER SUCCESSFULLY STARTED ==========================
-touch /var/opt/mssql/data/.sql-created
 

@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/mssql/server:2017-latest
 
-ENV SA_PASSWORD=Password1234
 ENV ACCEPT_EULA=Y
 
 RUN locale-gen en_US.UTF-8 && update-locale
@@ -11,6 +10,7 @@ ENV LC_ALL en_US.UTF-8
 ADD ./entrypoint.sh /
 ADD ./init.sh /
 ADD ./db.sql /
+ADD ./createTables.sql /
 ADD ./sp1_GetAccounts.sql /
 ADD ./sp2_DeleteAccount.sql /
 ADD ./sp3_DeleteProfile.sql /
@@ -22,8 +22,9 @@ ADD ./trigger_DeleteAccounts.sql /
 RUN  chmod +x /entrypoint.sh
 RUN  chmod +x /init.sh
 RUN  chmod +x /db.sql
+RUN  chmod +x /createTables.sql
 RUN  chmod +x /sp1_GetAccounts.sql
-RUN  chmod +x /sp2_DeleteAccounts.sql
+RUN  chmod +x /sp2_DeleteAccount.sql
 RUN  chmod +x /sp3_DeleteProfile.sql
 RUN  chmod +x /sp4_Login.sql
 RUN  chmod +x /sp5_AddAccount.sql
