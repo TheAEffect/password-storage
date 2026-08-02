@@ -1,0 +1,28 @@
+# Secrets / Umgebungsvariablen
+.env
+*.env
+.env.local
+
+# Maven Build-Output
+target/
+
+# Docker Volumes / Laufzeitdaten
+docker/data/
+
+# Build-Artefakte
+*.jar
+
+# IDE-spezifische Dateien
+.vscode/
+.idea/
+*.iml
+
+# Compiled class files
+*.class
+
+# Logs
+*.log
+
+# OS-spezifisch
+.DS_Store
+Thumbs.db
