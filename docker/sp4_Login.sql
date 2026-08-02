@@ -1,8 +1,10 @@
-DROP PROCEDURE IF EXISTS dbo.Schnell_Login;
+USE storage;
 GO
-CREATE PROCEDURE dbo.Schnell_Login
+DROP PROCEDURE IF EXISTS dbo.Login;
+GO
+CREATE PROCEDURE dbo.Login
 @USERNAME_EMAIL VARCHAR(255)
 AS
 BEGIN
-    SELECT id, password FROM dbo.Schnell_users WHERE username_email=@USERNAME_EMAIL;
+    SELECT id, password FROM dbo.users WHERE username_email=@USERNAME_EMAIL;
 END

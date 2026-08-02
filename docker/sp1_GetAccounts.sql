@@ -1,9 +1,11 @@
-DROP PROCEDURE IF EXISTS dbo.Schnell_GetAccounts;
+USE storage;
 GO
-CREATE PROCEDURE GetAccounts
+DROP PROCEDURE IF EXISTS dbo.GetAccounts;
+GO
+CREATE PROCEDURE dbo.GetAccounts
 (@PID INT)
 AS
 BEGIN
-    SELECT * FROM dbo.Schnell_accounts a
+    SELECT * FROM dbo.accounts a
     WHERE a.user_id=@PID ORDER BY a.name
 END

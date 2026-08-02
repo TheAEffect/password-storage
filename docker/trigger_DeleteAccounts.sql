@@ -1,9 +1,11 @@
-DROP TRIGGER IF EXISTS dbo.Schnell_DeleteAccounts
+USE storage;
 GO
-CREATE TRIGGER dbo.Schnell_DeleteAccounts
-    ON dbo.Schnell_users
+DROP TRIGGER IF EXISTS dbo.DeleteAccounts
+GO
+CREATE TRIGGER dbo.DeleteAccounts
+    ON dbo.users
     FOR DELETE
     AS
-    DELETE FROM dbo.Schnell_accounts
+    DELETE FROM dbo.accounts
     WHERE user_id IN(SELECT deleted.id FROM deleted)
 GO

@@ -1,5 +1,3 @@
-USE storage
-
 DROP TABLE IF EXISTS dbo.users;
 CREATE TABLE dbo.users
 (

@@ -1,9 +1,11 @@
-DROP PROCEDURE IF EXISTS dbo.Schnell_DeleteAccount;
+USE storage;
 GO
-CREATE PROCEDURE dbo.Schnell_DeleteAccount
+DROP PROCEDURE IF EXISTS dbo.DeleteAccount;
+GO
+CREATE PROCEDURE dbo.DeleteAccount
 (@PID INT)
 AS
 BEGIN
-    DELETE FROM dbo.Schnell_accounts
+    DELETE FROM dbo.accounts
     WHERE id=@PID;
 END
