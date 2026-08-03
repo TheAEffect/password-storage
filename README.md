@@ -1,5 +1,7 @@
 # PasswordStorage
 
+> Developed as part of a university course at Hochschule Esslingen.
+
 ## Prerequisites
 Before setting up the project, make sure the following software is installed on your system:
 - **JDK** (version 11 or higher)
@@ -50,3 +52,21 @@ To run everything locally, follow these steps:
 | `DB_NAME` | Name of the database. Default: `storage` |
 | `DB_USER` | Username for the database. Default: `storage` |
 | `DB_PASS` | Password for the database user |
+
+
+<details>
+   <summary><h3>Screenshots</h3></summary>
+
+
+   
+   Loginscreen
+   
+   <img width="40%" alt="image" src="https://github.com/user-attachments/assets/53f6533f-bac2-4388-a717-c64f29428c17" />
+   
+   All Accounts
+   
+   <img width="60%" alt="image" src="https://github.com/user-attachments/assets/9a65ea80-3330-4210-8055-b8efb16150fd" />
+
+
+</details>
+
